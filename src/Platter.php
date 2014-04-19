@@ -30,7 +30,7 @@ class Platter {
 		}
 		$def = $this->defs[$name];
 		if (is_callable($def)) {
-			return call_user_func($def);
+			return call_user_func($def, $this);
 		}
 		return $def;
 	}

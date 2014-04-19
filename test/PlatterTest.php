@@ -30,4 +30,14 @@ class PlatterTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('xyz', $platter->get('callable'));
 	}
 
+	public function testGetCallableIsGivenContainerReference() {
+		$platter = new Platter(array(
+			'simple' => 'abc',
+			'callable' => function ($container) {
+				return strrev($container->get('simple'));
+			}
+		));
+		$this->assertEquals('cba', $platter->get('callable'));
+	}
+
 }
