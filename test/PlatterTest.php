@@ -40,4 +40,12 @@ class PlatterTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('cba', $platter->get('callable'));
 	}
 
+	public function testGetResolvesToParent() {
+		$parentPlatter = new Platter(array(
+			'simple' => 'abc'
+		));
+		$platter = new Platter(array(), $parentPlatter);
+		$this->assertEquals('abc', $platter->get('simple'));
+	}
+
 }
