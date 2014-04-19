@@ -33,4 +33,13 @@ class BuilderTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('cba', $platter->get('callable'));
 	}
 
+	public function testBuildForget() {
+		$builder = new Platter\Builder;
+		$platter = $builder
+			->define('simple', 'abc')
+			->forget('simple')
+			->build();
+		$this->assertEmpty($platter->defined());
+	}
+
 }

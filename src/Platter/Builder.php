@@ -18,6 +18,11 @@ class Builder {
 		return $this;
 	}
 
+	public function forget($name) {
+		unset($this->defs[$name]);
+		return $this;
+	}
+
 	public function connect($parent) {
 		$this->parent = $parent;
 		return $this;
