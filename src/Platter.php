@@ -28,7 +28,11 @@ class Platter {
 				sprintf("Identifier '%s' is not defined", $name)
 			);
 		}
-		return $this->defs[$name];
+		$def = $this->defs[$name];
+		if (is_callable($def)) {
+			return call_user_func($def);
+		}
+		return $def;
 	}
 
 }

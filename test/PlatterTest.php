@@ -21,4 +21,13 @@ class PlatterTest extends PHPUnit_Framework_TestCase {
 		$platter->get('nothing');
 	}
 
+	public function testGetReturnsResultFromCallable() {
+		$platter = new Platter(array(
+			'callable' => function () {
+				return 'xyz';
+			}
+		));
+		$this->assertEquals('xyz', $platter->get('callable'));
+	}
+
 }
