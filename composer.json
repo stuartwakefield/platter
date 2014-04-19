@@ -1,14 +1,14 @@
 {
-    "name": "stuartw-io/platter",
-    "autoload":
-    {
-        "psr-0":
-        {
-            "Platter": "src"
-        }
-    },
-    "require-dev":
-    {
-        "phpunit/phpunit": "*"
-    }
+	"name": "stuartw-io/platter",
+	"autoload":
+	{
+		"psr-0":
+		{
+			"Platter": "src"
+		}
+	},
+	"require-dev":
+	{
+		"phpunit/phpunit": "*"
+	}
 }
