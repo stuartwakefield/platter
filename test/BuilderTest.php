@@ -19,4 +19,18 @@ class BuilderTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('abc', $platter->get('simple'));
 	}
 
+	public function testBuildConnectParent() {
+		$parent = new Platter(array(
+			'simple' => 'abc'
+		));
+		$builder = new Platter\Builder;
+		$platter = $builder
+			->define('callable', function ($container) {
+				return strrev($container->get('simple'));
+			})
+			->connect($parent)
+			->build();
+		$this->assertEquals('cba', $platter->get('callable'));
+	}
+
 }
