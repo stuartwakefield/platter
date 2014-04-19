@@ -42,4 +42,16 @@ class BuilderTest extends PHPUnit_Framework_TestCase {
 		$this->assertEmpty($platter->defined());
 	}
 
+	public function testBuildDisconnectParent() {
+		$parent = new Platter(array(
+			'simple' => 'abc'
+		));
+		$builder = new Platter\Builder;
+		$platter = $builder
+			->connect($parent)
+			->disconnect($parent)
+			->build();
+		$this->assertEmpty($platter->available());
+	}
+
 }

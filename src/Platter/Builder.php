@@ -28,6 +28,11 @@ class Builder {
 		return $this;
 	}
 
+	public function disconnect() {
+		$this->parent = null;
+		return $this;
+	}
+
 	public function build() {
 		return new Platter($this->defs, $this->parent);
 	}
