@@ -1,14 +1,34 @@
 <?php
+/**
+ * @author Stuart Wakefield <me@stuartwakefield.co.uk>
+ * @copyright Copyright (c) 2014 Stuart Wakefield (http://stuartwakefield.co.uk)
+ */
 class Platter {
 	
-	private $def;
+	/**
+	 * @var array $defs The array of object definitions
+	 */
+	private $defs;
 
-	public function __construct($def) {
-		$this->def = $def;
+	/**
+	 * @param array $defs The array of object definitions
+	 */
+	public function __construct($defs) {
+		$this->defs = $defs;
 	}
 
+	/**
+	 * @param string $name The identifier of the object to retrieve
+	 * @return mixed The object identified by the identifier
+	 * @throws InvalidArgumentException if the identifier has not been defined
+	 */
 	public function get($name) {
-		return $this->def[$name];
+		if (!isset($this->defs[$name])) {
+			throw new InvalidArgumentException(
+				sprintf("Identifier '%s' is not defined", $name)
+			);
+		}
+		return $this->defs[$name];
 	}
 
 }
