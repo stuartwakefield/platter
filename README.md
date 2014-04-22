@@ -114,31 +114,31 @@ and expressive builder interface. Once built the platter is immutable.
 
 ```php
 $builder = new Platter\Builder;
-$parentPlatter = $builder
+$parent = $builder
 	->register('dbuser', 'xyz')
 	->register('dbpassword', 'abc')
 	->build();
 
 $builder = new Platter\Builder;
-$platter = $builder
+$factory = $builder
 	->register('DataSource', function ($container) {
 		return new DataSource(
 			$container->get('dbuser'),
 			$container->get('dbpassword')
 		);
 	})
-	->connect($parentPlatter)
+	->connect($parent)
 	->build();
 ```
 
 To show all available items served by the platter:
 
 ```php
-$platter->available(); // array('DataSource', 'dbpassword', 'dbuser');
+$factory->available(); // array('DataSource', 'dbpassword', 'dbuser');
 ```
 
 To show the items that the platter instance itself defines:
 
 ```php
-$platter->defined(); // array('DataSource');
+$factory->defined(); // array('DataSource');
 ```
