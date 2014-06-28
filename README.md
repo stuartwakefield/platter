@@ -142,3 +142,16 @@ To show the items that the platter instance itself defines:
 ```php
 $factory->defined(); // array('DataSource');
 ```
+
+To create a singleton use the Singleton definition object:
+
+```php
+$builder
+	->register('DataSource', new Platter\Definition\Singleton(function ($container) {
+		return new DataSource(
+			$container->get('dbuser'),
+			$container->get('dbpassword')
+		);
+	}))
+	->build();
+```

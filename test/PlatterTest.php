@@ -30,6 +30,18 @@ class PlatterTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('xyz', $platter->get('callable'));
 	}
 
+	public function testGetReturnsSameInstanceWithSingleton() {
+		$platter = new Platter(array(
+			'callable' => new Platter\Definition\Singleton(function () {
+				return (object) array(
+					'count' => 0
+				);
+			})
+		));
+		$this->assertEquals(0, $platter->get('callable')->count ++);
+		$this->assertEquals(1, $platter->get('callable')->count);
+	}
+
 	public function testGetCallableIsGivenContainerReference() {
 		$platter = new Platter(array(
 			'simple' => 'abc',
