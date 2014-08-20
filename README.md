@@ -2,9 +2,19 @@
 
 Light-touch dependency injection.
 
+[![Build status](https://travis-ci.org/stuartwakefield/platter.svg)](https://travis-ci.org/stuartwakefield/platter)
+
 ## Usage
 
-_Package installation instructions to be defined_
+To install add to your composer.json:
+
+```php
+"require": {
+	"stuartwakefield/platter": "0.1.0"
+}
+```
+
+After you have run `composer install` you will be able to use the `Platter` DI manager.
 
 Create a new `Platter` instance with your definitions:
 

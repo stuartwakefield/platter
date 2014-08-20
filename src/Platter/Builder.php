@@ -10,27 +10,30 @@ use Platter;
 
 class Builder {
 	
-	private $defs = array();
-	private $parent = null;
+	private $defs;
+	private $parent;
+
+	public function __construct($defs = array(), $parent = null) {
+		$this->defs = $defs;
+		$this->parent = $parent;
+	}
 
 	public function define($name, $def) {
-		$this->defs[$name] = $def;
-		return $this;
+		return new self(array(
+			$name => $def
+		) + $this->defs, $this->parent);
 	}
 
 	public function forget($name) {
-		unset($this->defs[$name]);
-		return $this;
+		return new self(array_diff_key($this->defs, array_flip(array($name))), $this->parent);
 	}
 
 	public function connect($parent) {
-		$this->parent = $parent;
-		return $this;
+		return new self($this->defs, $parent);
 	}
 
 	public function disconnect() {
-		$this->parent = null;
-		return $this;
+		return new self($this->defs, null);
 	}
 
 	public function build() {
