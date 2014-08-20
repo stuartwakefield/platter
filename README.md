@@ -1,6 +1,6 @@
 # Platter
 
-A basic application dependency resolver.
+Light-touch dependency injection.
 
 ## Usage
 
